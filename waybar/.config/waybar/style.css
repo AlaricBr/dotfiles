@@ -1,0 +1,33 @@
+@define-color foreground #B7DBFF;
+@define-color foreground-inactive #2F8FD8;
+
+* {
+	font-family: "NotoSansMono Nerd Font";
+}
+#network,
+#pulseaudio {
+	padding: 0 20px;
+}
+
+#workspaces button {
+    color: @foreground;
+    padding-left: 0.7em;
+}
+
+#workspaces button.empty {
+    color: @foreground-inactive;
+}
+
+#custom-updates {
+  padding: 0 10px;
+  font-weight: bold;
+}
+
+#custom-updates.has-updates {
+  color: @foreground-inactive;
+}
+
+#custom-updates.hidden {
+  padding: 0;
+  margin: 0;
+}

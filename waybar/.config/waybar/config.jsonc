@@ -1,0 +1,116 @@
+{
+    "layer": "top",
+    "modules-left": ["hyprland/workspaces", "cpu"],
+    "modules-center": ["sway/window", "clock"],
+    "modules-right": ["custom/updates", "network", "pulseaudio"],
+    "sway/window": {
+        "max-length": 50
+    },
+    "custom/notification": {
+        "tooltip": true,
+        "format": "<span size='16pt'>{icon}</span>",
+        "format-icons": {
+            "notification": "󱅫",
+            "none": "󰂜",
+            "dnd-notification": "󰂠",
+            "dnd-none": "󰪓",
+            "inhibited-notification": "󰂛",
+            "inhibited-none": "󰪑",
+            "dnd-inhibited-notification": "󰂛",
+            "dnd-inhibited-none": "󰪑"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    "clock": {
+		"format": " {:%H:%M}",
+        "format-alt": " {:%Y/%m/%d %H:%M}",
+		"tooltip-format": "<tt>{calendar}</tt>",
+		"calendar": {
+        	"mode"          : "month",
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span color='#E6F2FF'><b>{}</b></span>",
+                "days":       "<span color='#2F8FD8'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays":   "<span color='#B7DBFF'><b>{}</b></span>",
+                "today":      "<span color='#8FCBFF'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions":  {
+        	"on-click-right": "mode",
+            "on-scroll-up": "tz_up",
+            "on-scroll-down": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+	"cpu": {
+     "interval": 1,
+     "format": "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}",
+     "format-icons": [
+          "<span color='#E6F2FF'>▁</span>", // Pale sky blue
+          "<span color='#CFE8FF'>▂</span>", // Light Azure
+          "<span color='#B7DBFF'>▃</span>", // Pastel blue
+          "<span color='#8FCBFF'>▄</span>", // Sky blue
+          "<span color='#2F8FD8'>▅</span>", // Ocean blue
+          "<span color='#1F6FB2'>▆</span>", // Deep azure
+          "<span color='#144E8A'>▇</span>", // Soft navy blue
+          "<span color='#0A2E5C'>█</span>"  // Deep blue
+     ]
+	},
+	"pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": " ",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+	"network": {
+    	"format": "{ifname}",
+    	"format-wifi": "{essid} ({signalStrength}%) ",
+    	"format-ethernet": "{ipaddr}/{cidr} 󰊗",
+    	"format-disconnected": "", //An empty format will hide the module.
+    	"tooltip-format": "{ifname} via {gwaddr} 󰊗",
+    	"tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    	"tooltip-format-ethernet": "{ifname} ",
+    	"tooltip-format-disconnected": "Disconnected",
+    	"max-length": 50
+	},
+	"hyprland/workspaces": {
+        "format": "<span>{icon}</span>",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "\uf444",
+            "default": "\uf4c3"
+        },
+        "icon-size": 5,
+        "sort-by-number": true,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+  	"custom/updates": {
+    	"exec": "/home/alaric/shared/Scripts/waybar_show_updates",
+    	"interval": "3600",
+    	"return-type": "json",
+    	"tooltip": true
+  	}
+}
